@@ -8,7 +8,7 @@ import com.example.taptap.dto.Todo
 import java.lang.IllegalStateException
 
 private const val DATABASE_NAME = "todo-database.db"
-class TodoRepository  private constructor(context: Context){
+class TodoRepository private constructor(context: Context){
 
     // 데이터베이스 빌드
     private val database: TodoDatabase = Room.databaseBuilder(
@@ -34,7 +34,7 @@ class TodoRepository  private constructor(context: Context){
     companion object {
         private var INSTANCE: TodoRepository? = null
 
-        fun initilize(context: Context) {
+        fun initialize(context: Context) {
             if(INSTANCE == null){
                 INSTANCE = TodoRepository(context)
             }

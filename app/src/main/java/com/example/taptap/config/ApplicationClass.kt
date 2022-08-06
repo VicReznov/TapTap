@@ -11,6 +11,6 @@ class ApplicationClass: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        TodoRepository.initilize(this)
+        TodoRepository.initialize(this)
     }
 }

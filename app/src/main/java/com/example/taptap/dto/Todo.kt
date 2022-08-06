@@ -12,6 +12,6 @@ class Todo(
     @ColumnInfo(name = "title") val title: String, // 제목
     @ColumnInfo(name = "content") val content: String, // 내용
     @ColumnInfo(name = "timestamp") val timestamp: String, // 생성/수정 날짜
-    @ColumnInfo(name = "isChecked") val isChecked: Boolean // 체크박스(할 일 완료) 여부
+    @ColumnInfo(name = "isChecked") var isChecked: Boolean // 체크박스(할 일 완료) 여부
     ): Serializable { // Intent에 객체를 담기 위해 Serializable을 상속받음
     }
