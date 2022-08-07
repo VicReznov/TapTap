@@ -14,6 +14,7 @@ import com.example.taptap.dto.Todo
 class TodoAdapter(val context: Context): RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var list = mutableListOf<Todo>()
+    private lateinit var itemClickListener: ItemClickListener
 
     inner class TodoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -36,6 +37,9 @@ class TodoAdapter(val context: Context): RecyclerView.Adapter<TodoAdapter.TodoVi
                itemCheckBoxClickListener.onClick(it, layoutPosition, list[layoutPosition].id)
             }
 
+            itemView.setOnClickListener {
+                itemClickListener.onClick(it, layoutPosition, list[layoutPosition].id)
+            }
         }
     }
 
@@ -66,4 +70,13 @@ class TodoAdapter(val context: Context): RecyclerView.Adapter<TodoAdapter.TodoVi
     fun setItemCheckBoxClickListener(itemCheckBoxClickListener: ItemCheckBoxClickListener){
         this.itemCheckBoxClickListener = itemCheckBoxClickListener
     }
+
+    interface ItemClickListener{
+        fun onClick(view: View, position: Int, itemId: Long)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener){
+        this.itemClickListener = itemClickListener
+    }
+
 }

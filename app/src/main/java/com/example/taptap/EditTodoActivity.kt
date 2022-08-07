@@ -24,6 +24,9 @@ class EditTodoActivity : AppCompatActivity() {
         if(type.equals("ADD")){
             binding.editTodoSaveBtn.text = "추가하기"
         } else {
+            todo = intent.getSerializableExtra("item") as Todo?
+            binding.editTodoTitle.setText(todo!!.title)
+            binding.editTodoContent.setText(todo!!.content)
             binding.editTodoSaveBtn.text = "수정하기"
         }
 
@@ -48,8 +51,18 @@ class EditTodoActivity : AppCompatActivity() {
             }
             // 수정할 때
             else {
+                if(title.isNotEmpty() && content.isNotEmpty()){
+                    val todo = Todo(todo!!.id, title, content, currentDate, todo!!.isChecked)
 
+                    val intent = Intent().apply {
+                        putExtra("todo", todo)
+                        putExtra("flag", 1)
+                    }
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
             }
+
         }
     }
 }
